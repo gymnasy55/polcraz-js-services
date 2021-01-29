@@ -1,3 +1,9 @@
-const jsonFromUrl = require('./json-from-url')
+const getJSON = require('./json-from-url')
 
-console.log(jsonFromUrl('https://api.github.com/users/gymnasy55/repos'))
+let mainFunction = async () => {
+    (await getJSON()).forEach(repos => {
+        console.log(`${repos.name}: ${repos.url}`)
+    })
+}
+
+mainFunction()

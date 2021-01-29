@@ -1,8 +1,12 @@
 const fetch = require('node-fetch')
 
-//TODO: ДОДЕЛАТЬ ЭТУ ХУЙНЮ
-module.exports = (url) => {
-    let obj = {}
-    fetch(url).then(response => response.json()).then(data => Object.assign(obj, data))
-    return obj
+module.exports = async () => {
+    let response = await fetch('https://api.github.com/users/gymnasy55/repos')
+    let json = null
+    if(response.ok) {
+        json = await response.json()
+    } else {
+        console.error(`Error with status: ${response.status}`)
+    }
+    return json
 }
